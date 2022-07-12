@@ -9,3 +9,10 @@ if ( ! function_exists( 'pdk_custom_js' ) ) :
   }
   add_action( 'wp_enqueue_scripts', 'pdk_custom_js', 10 );
 endif;
+
+// Shortcode to Automate the Copyright Year
+function pdk_copyright_year_shortcode() { 
+      $year = date("Y"); 
+return $year;
+}
+add_shortcode('pdk_year', 'pdk_copyright_year_shortcode');
