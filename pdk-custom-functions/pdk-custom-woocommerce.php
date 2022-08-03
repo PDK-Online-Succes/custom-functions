@@ -181,3 +181,21 @@ function themesharbor_disable_woocommerce_block_editor_styles() {
 	wp_deregister_style( 'wc-blocks-style' );
   }
 add_action( 'enqueue_block_assets', 'themesharbor_disable_woocommerce_block_editor_styles', 1, 1 );
+
+// disable flexslider js
+function flex_dequeue_script() {
+    wp_dequeue_script( 'flexslider' );
+}
+// add_action( 'wp_print_scripts', 'flex_dequeue_script', 100 );
+
+// disable zoom jquery js file
+function zoom_dequeue_script() {
+    wp_dequeue_script( 'zoom' );
+}
+// add_action( 'wp_print_scripts', 'zoom_dequeue_script', 100 );
+
+// disable photoswipe js file
+function photoswipe_dequeue_script() {
+    wp_dequeue_script( 'photoswipe-ui-default' );
+}
+// add_action( 'wp_print_scripts', 'photoswipe_dequeue_script', 100 );
