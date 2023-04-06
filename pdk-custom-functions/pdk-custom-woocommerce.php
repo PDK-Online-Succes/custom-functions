@@ -199,3 +199,12 @@ function photoswipe_dequeue_script() {
     wp_dequeue_script( 'photoswipe-ui-default' );
 }
 // add_action( 'wp_print_scripts', 'photoswipe_dequeue_script', 100 );
+
+// Controleer of het adresveld het huisnummer bevat
+add_action( 'woocommerce_after_checkout_validation', 'validate_checkout', 10, 2); 
+ 
+function validate_checkout( $data, $errors ){ 
+    if (  ! preg_match('/[0-9]/', $data[ 'billing_address_1' ] ) ){ 
+        $errors->add( 'address', 'Sorry, maar het door u opgegeven adres bevat geen huisnummer.' ); 
+    }
+}
