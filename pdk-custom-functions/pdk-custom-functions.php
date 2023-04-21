@@ -11,11 +11,29 @@ if ( ! function_exists( 'pdk_custom_js' ) ) :
 endif;
 
 // Shortcode to Automate the Copyright Year
-function pdk_copyright_year_shortcode() { 
-      $year = date("Y"); 
-return $year;
-}
-add_shortcode('pdk_year', 'pdk_copyright_year_shortcode');
+add_shortcode('pdk_year', function() { 
+  $year = date("Y"); 
+  return $year;
+});
+
+add_shortcode('bloginfo', function($atts) {
+
+  $atts = shortcode_atts(array('filter'=>'', 'info'=>''), $atts, 'bloginfo');
+
+  $infos = array(
+    'name', 'description',
+    'wpurl', 'url', 'pingback_url',
+    'admin_email', 'charset', 'version', 'html_type', 'language',
+    'atom_url', 'rdf_url','rss_url', 'rss2_url',
+    'comments_atom_url', 'comments_rss2_url',
+  );
+
+  $filter = in_array(strtolower($atts['filter']), array('raw', 'display'), true)
+    ? strtolower($atts['filter'])
+    : 'display';
+
+  return in_array($atts['info'], $infos, true) ? get_bloginfo($atts['info'], $filter) : '';
+});
 
 // Allow SVG
 add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
