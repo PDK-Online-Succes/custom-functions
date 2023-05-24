@@ -79,7 +79,7 @@ function pdk_product_cat_add_short_description_meta() {
 	</div>
 	<?php
 }
-add_action( 'product_cat_edit_form_fields', 'pdk_product_cat_edit_short_description_meta' );
+add_action( 'product_cat_edit_form_fields', 'pdk_product_cat_edit_short_description_meta', 1 );
 /**
  * Add a short_description metabox to the Edit Product Category page.
  * For adding a short_description metabox to the WordPress admin when
