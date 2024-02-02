@@ -10,6 +10,19 @@ if ( ! function_exists( 'pdk_custom_js' ) ) :
   add_action( 'wp_enqueue_scripts', 'pdk_custom_js', 10 );
 endif;
 
+if( ! function_exists( 'pdk_admin_js' ) ) :
+	function pdk_admin_js(){
+		wp_enqueue_script( 'main-admin-js', WPMU_PLUGIN_URL.'/pdk-custom-functions/assets/js/admin.js', array('jquery'), null, true );
+	}
+	add_action( 'admin_enqueue_scripts', 'pdk_admin_js' );
+endif;
+if( ! function_exists( 'pdk_admin_css' ) ) :
+	function pdk_admin_css(){
+		wp_enqueue_style( 'main-admin-css', WPMU_PLUGIN_URL.'/pdk-custom-functions/assets/css/admin.css', null, null, 'all' );
+	}
+	add_action( 'admin_enqueue_scripts', 'pdk_admin_css' );
+endif;
+
 // Shortcode to Automate the Copyright Year
 add_shortcode('pdk_year', function() { 
   $year = date("Y"); 
