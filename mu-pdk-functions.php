@@ -15,7 +15,7 @@ if (!function_exists('untrailingslashit') || !defined('WP_PLUGIN_DIR')) {
 require WPMU_PLUGIN_DIR.'/pdk-custom-functions/pdk-custom-functions.php';
 require WPMU_PLUGIN_DIR.'/pdk-custom-functions/pdk-custom-woocommerce.php';
 
-require WPMU_PLUGIN_DIR.'/pdk-custom-functions/plugin-update-checker/plugin-update-checker.php';
+require WPMU_PLUGIN_DIR.'/pdk-custom-functions/libraries/plugin-update-checker/plugin-update-checker.php';
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
 $myUpdateChecker = PucFactory::buildUpdateChecker(
