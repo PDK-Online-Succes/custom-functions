@@ -3,7 +3,7 @@
 * Plugin Name:       PDK Online Succes Custom Functions
 * Plugin URI:        https://pdk.nl
 * Description:       Custom functions for PDK Online Succes
-* Version:           1.0.1
+* Version:           1.0.0
 * Author:            PDK Online Success
 * Author URI:        https://pdk.nl
 */
