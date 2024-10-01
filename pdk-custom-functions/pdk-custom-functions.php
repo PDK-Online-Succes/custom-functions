@@ -33,6 +33,15 @@ if( ! function_exists( 'pdk_admin_css' ) ) :
 	add_action( 'admin_enqueue_scripts', 'pdk_admin_css' );
 endif;
 
+// Disable auto-update email notifications for plugins.
+add_filter( 'auto_plugin_update_send_email', '__return_false' );
+// Disable auto-update email notifications for themes.
+add_filter( 'auto_theme_update_send_email', '__return_false' );
+// Disable auto-update email notifications for core.
+add_filter( 'auto_core_update_send_email', '__return_false' );
+// Disable WP Mail SMTP weekly summary email.
+add_filter( 'wp_mail_smtp_reports_emails_summary_is_disabled', '__return_true' );
+
 // Shortcode to Automate the Copyright Year
 add_shortcode('pdk_year', function() { 
   $year = date("Y"); 
@@ -40,7 +49,6 @@ add_shortcode('pdk_year', function() {
 });
 
 add_shortcode('bloginfo', function($atts) {
-
   $atts = shortcode_atts(array('filter'=>'', 'info'=>''), $atts, 'bloginfo');
 
   $infos = array(
