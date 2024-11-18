@@ -13,7 +13,9 @@ if (!function_exists('untrailingslashit') || !defined('WP_PLUGIN_DIR')) {
     exit;
 }
 require WPMU_PLUGIN_DIR.'/pdk-custom-functions/pdk-custom-functions.php';
-require WPMU_PLUGIN_DIR.'/pdk-custom-functions/pdk-custom-woocommerce.php';
+if(in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))){ 
+	require WPMU_PLUGIN_DIR.'/pdk-custom-functions/pdk-custom-woocommerce.php';
+}
 
 require WPMU_PLUGIN_DIR.'/pdk-custom-functions/libraries/plugin-update-checker/plugin-update-checker.php';
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
