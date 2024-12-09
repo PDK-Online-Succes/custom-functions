@@ -16,18 +16,3 @@ require WPMU_PLUGIN_DIR.'/pdk-custom-functions/pdk-custom-functions.php';
 if(in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))){ 
 	require WPMU_PLUGIN_DIR.'/pdk-custom-functions/pdk-custom-woocommerce.php';
 }
-
-require WPMU_PLUGIN_DIR.'/pdk-custom-functions/libraries/plugin-update-checker/plugin-update-checker.php';
-use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
-
-$myUpdateChecker = PucFactory::buildUpdateChecker(
-	'https://github.com/PDK-Online-Succes/custom-functions/',
-	__FILE__,
-	'custom-functions'
-);
-
-//Set the branch that contains the stable release.
-$myUpdateChecker->setBranch('main');
-
-//Optional: If you're using a private repository, specify the access token like this:
-$myUpdateChecker->setAuthentication('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');
