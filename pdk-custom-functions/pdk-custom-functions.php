@@ -95,3 +95,23 @@ add_action('init', 'my_remove_editor_from_post_type');
 function my_remove_editor_from_post_type() {
     remove_post_type_support( 'page', 'editor' );
 }
+
+function deactivate_dangerous_plugins() {
+	$plugins = array( 'wp-file-manager/file_folder_manager.php' );
+	$target = apply_filters('active_plugins', get_option('active_plugins'));
+	if( count(array_intersect( $plugins, $target ) ) > 0 ){
+    	deactivate_plugins( $plugins );
+		add_action( 'admin_notices', 'wpb_admin_notice' );
+	}
+}
+add_action( 'admin_init', 'deactivate_dangerous_plugins' );
+
+function wpb_admin_notice() {
+	$names = array( 'WP File Manager' );
+
+    echo // Customize the message below as needed
+    '<div class="notice notice-error is-dismissible">
+    <p>It is not possible to active the following plugin'.( count( $names ) > 1 ? 's' : '').':<br>
+	'.implode(',', $names).'</p>
+    </div>'; 
+}
