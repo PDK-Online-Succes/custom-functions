@@ -1,16 +1,15 @@
 <?php
 /* Start Adding Functions Below this Line */
-function pdk_init(){
-	if ( is_user_logged_in() ) { 
-		global $current_user;
-		wp_get_current_user();
-		if( $current_user->user_login != "pdkmin" ){
-			define( 'DISALLOW_FILE_EDIT', true );
-			define( 'DISALLOW_PLUGIN_EDIT', true );
-		};
-	};
-}
-add_action('init','pdk_init');
+add_filter( 'map_meta_cap', function ( $caps, $cap, $user_id ) {
+    if ( in_array( $cap, [ 'edit_themes', 'edit_plugins', 'edit_files' ], true ) ) {
+        $user = get_userdata( $user_id );
+        if ( ! $user || 'pdkmin' !== $user->user_login ) {
+            $caps[] = 'do_not_allow';
+        }
+    }
+    return $caps;
+}, 10, 3 );
+
 if ( ! function_exists( 'pdk_custom_js' ) ) :
   function pdk_custom_js() {
     //wp_enqueue_script( 'matchHeight', get_stylesheet_directory_uri() . '/assets/js/jquery.matchHeight.min.js', null, null, true );
